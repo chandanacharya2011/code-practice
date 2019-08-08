@@ -1,0 +1,43 @@
+Iterative Approach
+====================
+
+class Solution {
+    public ListNode reverseList(ListNode head) {
+        ListNode current = head;
+
+        
+        if(current == null) return null;
+        if(current.next == null) return head;
+        
+        ListNode after = current;
+        ListNode previous = null;
+        
+        
+        while(current.next != null){
+            after = current.next;
+            current.next = previous;
+            previous = current;
+            current = after;
+        }
+        current.next = previous;
+        return current;
+    }
+}
+
+Time Complexity => O(n)
+Space Complexity => O(1)
+
+Recursive Solution
+====================
+class Solution {
+    public ListNode reverseList(ListNode head) {
+        if(head == null || head.next == null) return head;
+        
+        ListNode p = reverseList(head.next);
+        head.next.next = head;
+        head.next = null; // Important else there will be a cycle in LL.
+        return p;
+    }
+}
+
+// Traverse backwards - Imagine the list is half reversed. 
