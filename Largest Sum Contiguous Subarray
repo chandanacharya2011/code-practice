@@ -1,0 +1,24 @@
+class Solution {
+    public int maxSubArray(int[] nums) {
+        
+        int size = nums.length;
+        int local_max = 0;
+        int global_max = Integer.MIN_VALUE;
+        
+        for(int i = 0; i < size; i++){
+            local_max = Math.max(nums[i], local_max + nums[i]);
+            
+            if(local_max > global_max){
+                global_max = local_max;
+            }
+            //global_max = Math.max(local_max, global_max);
+            
+        }
+        return global_max;
+    }
+}
+
+// This is Kadane's algorithm - Dp to minimize computations
+// Time complexity O(n) - > runs through the array once and keeps track of the local_maximum found so far.
+// The trick to is to find the maximum of (local_maximum + a[i] and local_maximum) and update the local maximum.
+// Keep a track of the maximum sum in a global_max variable and update its value if a higher sum is found
