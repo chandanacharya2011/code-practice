@@ -1,0 +1,32 @@
+class Solution {
+    public List<String> subdomainVisits(String[] cpdomains) {
+        Map<String, Integer> hmap = new HashMap<String, Integer>();
+        List<String> res = new ArrayList();
+        
+        for(String str: cpdomains){
+            String[] strArr = str.split(" ");
+            int visitCount = Integer.parseInt(strArr[0]);
+            String domain = strArr[1];
+            
+            for(int i =0; i< domain.length(); i++){
+                if(domain.charAt(i) == '.'){
+                    String domainSplit = domain.substring(i+1);
+                    hmap.put(domainSplit, hmap.getOrDefault(domainSplit, 0) 
+                             + visitCount);
+                }
+            }
+            hmap.put(domain, hmap.getOrDefault(domain, 0) + visitCount);
+            
+        }
+        for (String d : hmap.keySet()) {
+          res.add(hmap.get(d) + " " + d);  
+        }
+        return res;
+    }
+}
+
+
+// Time Complexity = O(N) as the inner for loop run fixed number of times (max of 2)
+// Usage of string.split function
+// String.substring function
+// map.getOrDefault 
