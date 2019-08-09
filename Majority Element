@@ -48,3 +48,7 @@ class Solution {
         return candidate;
     }
 }
+
+// The basic concept is that you cant have two elements occurring more than n/2 times in an array. 
+//So what this algorithm does is try to cancel out each element with a differing element . 
+//This way, if a majority element exists, it will still persist till the end.
